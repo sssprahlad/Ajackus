@@ -10,14 +10,14 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: ["https://ajackus-one-theta.vercel.app/"], 
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true
+    origin: 'http://localhost:3000' || 'https://ajackus-one-theta.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
-// app.options("*", cors()); // handle preflight requests
-
 
 app.use(express.json());
+
 
 app.get('/', (req, res) => {
     res.json({ 
@@ -54,7 +54,7 @@ app.use((req, res) => {
 });
 
 const server = app.listen(port, '0.0.0.0', () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`🚀 Server is running on port ${port}`);
 });
 process.on('unhandledRejection', (err) => {
     console.error('Unhandled Rejection:', err);

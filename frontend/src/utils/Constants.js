@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Use environment variable if available, otherwise use production URL
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "https://ajackus-abuh.onrender.com";
+export const API_BASE_URL = "https://ajackus-abuh.onrender.com" || "http://localhost:8080";
 
 export const LOGIN_API = `${API_BASE_URL}/login`;
 export const REGISTER_API = `${API_BASE_URL}/register`;
@@ -12,10 +12,6 @@ export const GET_USER_API = `${API_BASE_URL}/manageUser`;
 export const UPDATE_USER_API = `${API_BASE_URL}/manageUser`;
 export const DELETE_USER_API = `${API_BASE_URL}/manageUser`;
 export const SEARCH_API = `${API_BASE_URL}/searchQuery`;
-
-
-
-
 
 
 

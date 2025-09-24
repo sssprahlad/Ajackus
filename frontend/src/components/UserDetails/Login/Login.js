@@ -34,22 +34,12 @@ const Login = () => {
         }
 
         try {
-            // console.log('Sending login request to:', LOGIN_API);
-            // const response = await axios.post("https://ajackus-abuh.onrender.com/login", {
-            //     username,
-            //     password
-            // });
-            const response = await axios.post(
-                "https://ajackus-abuh.onrender.com/login",
-                { username, password },   // request body
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                  }
-                }
-              );
-              
+            console.log('Sending login request to:', LOGIN_API);
+            const response = await api.post(LOGIN_API, {
+                username,
+                password
+            });
+         
             
             const data = response.data;
             console.log('Login response:', data);
