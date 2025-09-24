@@ -14,10 +14,6 @@ export const SEARCH_API = `${API_BASE_URL}/searchQuery`;
 
 
 
-
-
-
-
 export const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {

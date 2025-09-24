@@ -41,7 +41,7 @@ class UserManagement {
 
     static getAllUsersData(page = 1, limit = 10, searchTerm = '', filter = '') {
         return new Promise((resolve, reject) => {
-            // First, get the total count
+            
             db.get(
                 `SELECT COUNT(*) as total FROM usersManagement`,
                 [],
@@ -54,7 +54,7 @@ class UserManagement {
                     const total = countResult.total;
                     const offset = (page - 1) * limit;
                     
-                    // Then get the paginated results
+                  
                     db.all(
                         `SELECT * FROM usersManagement 
                          ORDER BY id DESC 
@@ -132,14 +132,81 @@ class UserManagement {
     }
 
 
+    // static searchQuery(searchTerm = '', filter = '', page = 1, limit = 10) {
+    //     console.log(searchTerm, filter, page, limit,"sai");
+        
+    //     return new Promise((resolve, reject) => {
+    //         const offset = (page - 1) * limit;
+    //         let baseQuery = 'FROM usersManagement';
+    //         let whereClause = '';
+    //         const params = [];
+            
+    //         if (searchTerm && searchTerm.trim() !== '') {
+    //             const searchPattern = `%${searchTerm}%`;
+    //             if (filter) {
+    //                 whereClause = ` WHERE ${filter} LIKE ?`;
+    //                 params.push(searchPattern);
+    //             } else {
+    //                 whereClause = ` WHERE firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ? OR department LIKE ?`;
+    //                 params.push(...Array(5).fill(searchPattern));
+    //             }
+    //         } else if (filter) {
+    //             whereClause = ` WHERE ${filter} IS NOT NULL`;
+    //         }
+
+         
+    //         db.get(
+    //             `SELECT COUNT(*) as total ${baseQuery} ${whereClause}`,
+    //             params,
+    //             (countErr, countResult) => {
+    //                 if (countErr) {
+    //                     console.error('Error counting search results:', countErr);
+    //                     reject(countErr);
+    //                     return;
+    //                 }
+
+    //                 const total = countResult.total;
+    //                 const paginationParams = [...params, limit, offset];
+                    
+    //                 let orderClause = 'ORDER BY ';
+    //                 if (filter && searchTerm) {
+    //                     orderClause += `${filter} ASC`;
+    //                 } else {
+    //                     orderClause += 'id DESC';
+    //                 }
+                    
+    //                 db.all(
+    //                     `SELECT * ${baseQuery} ${whereClause} ${orderClause} LIMIT ? OFFSET ?`,
+    //                     paginationParams,
+    //                     (err, rows) => {
+    //                         if (err) {
+    //                             console.error('Error in search query:', err);
+    //                             reject(err);
+    //                         } else {
+    //                             resolve({
+    //                                 users: rows || [],
+    //                                 total,
+    //                                 page,
+    //                                 totalPages: Math.ceil(total / limit)
+    //                             });
+    //                         }
+    //                     }
+    //                 );
+    //             }
+    //         );
+    //     });
+    // }
+
+
     static searchQuery(searchTerm = '', filter = '', page = 1, limit = 10) {
-        console.log(searchTerm, filter, page, limit,"sai");
+        console.log('Search params:', { searchTerm, filter, page, limit });
         
         return new Promise((resolve, reject) => {
             const offset = (page - 1) * limit;
             let baseQuery = 'FROM usersManagement';
             let whereClause = '';
             const params = [];
+            
             
             if (searchTerm && searchTerm.trim() !== '') {
                 const searchPattern = `%${searchTerm}%`;
@@ -151,10 +218,9 @@ class UserManagement {
                     params.push(...Array(5).fill(searchPattern));
                 }
             } else if (filter) {
-                whereClause = ` WHERE ${filter} IS NOT NULL`;
+                whereClause = '';
             }
-
-         
+    
             db.get(
                 `SELECT COUNT(*) as total ${baseQuery} ${whereClause}`,
                 params,
@@ -164,13 +230,13 @@ class UserManagement {
                         reject(countErr);
                         return;
                     }
-
-                    const total = countResult.total;
+    
+                    const total = countResult.total || 0;
                     const paginationParams = [...params, limit, offset];
                     
                     let orderClause = 'ORDER BY ';
-                    if (filter && searchTerm) {
-                        orderClause += `${filter} ASC`;
+                    if (filter) {
+                        orderClause += `${filter} ASC, id DESC`; 
                     } else {
                         orderClause += 'id DESC';
                     }
@@ -197,7 +263,6 @@ class UserManagement {
         });
     }
 
-    
     
 
 
