@@ -9,6 +9,7 @@ import { SEARCH_API } from '../../utils/Constants';
 
 const Home = () => {
     const navigate = useNavigate();
+    console.log(SEARCH_API, 'api');
     
     useEffect(() => {
         const token = localStorage.getItem('token');

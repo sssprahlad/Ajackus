@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 import { api, LOGIN_API } from '../../../utils/Constants';
 
@@ -33,11 +34,22 @@ const Login = () => {
         }
 
         try {
-            console.log('Sending login request to:', LOGIN_API);
-            const response = await api.post(LOGIN_API, {
-                username,
-                password
-            });
+            // console.log('Sending login request to:', LOGIN_API);
+            // const response = await axios.post("https://ajackus-abuh.onrender.com/login", {
+            //     username,
+            //     password
+            // });
+            const response = await axios.post(
+                "https://ajackus-abuh.onrender.com/login",
+                { username, password },   // request body
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                  }
+                }
+              );
+              
             
             const data = response.data;
             console.log('Login response:', data);
