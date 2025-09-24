@@ -10,28 +10,13 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // Enable CORS for all routes
-app.use((req, res, next) => {
-    const allowedOrigins = ['http://localhost:3000', 'https://ajackus-abuh.onrender.com'];
-    const origin = req.headers.origin;
-    
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    
-    // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-    
-    next();
-});
+app.use(cors({
+    origin: ["https://ajackus-md43nnhkd-saiprahlads-projects.vercel.app"], // your frontend domain
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    credentials: true
+}));
+// app.options("*", cors()); // handle preflight requests
 
-// Initialize CORS with default settings
-app.use(cors());
 
 app.use(express.json());
 
