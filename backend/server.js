@@ -9,9 +9,8 @@ const { authMiddleware } = require('./middleware/auth');
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Enable CORS for all routes
 app.use(cors({
-    origin: ["https://ajackus-md43nnhkd-saiprahlads-projects.vercel.app"], // your frontend domain
+    origin: ["https://ajackus-one-theta.vercel.app/"], 
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true
 }));
