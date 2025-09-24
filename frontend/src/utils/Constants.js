@@ -2,7 +2,7 @@
 import axios from 'axios';
 const { REACT_APP_API_BASE_URL } = process.env;
 
-export const API_BASE_URL = REACT_APP_API_BASE_URL || "http://localhost:8080";
+export const API_BASE_URL = "https://ajackus-abuh.onrender.com" || "http://localhost:8080";
 
 export const LOGIN_API = `${API_BASE_URL}/login`;
 export const REGISTER_API = `${API_BASE_URL}/register`;
