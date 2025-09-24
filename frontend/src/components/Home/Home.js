@@ -290,7 +290,7 @@ const Home = () => {
                                                 onChange={(e) => setEditingUser({...editingUser, department: e.target.value})}
                                             />
                                         </td>
-                                        <td className="action-buttons">
+                                        <td className="action-buttons" style={{padding:"19px"}}>
                                             {editingId === user.id ? (
                                                 <>
                                                     <button className="btn-save" onClick={() => handleSaveUser(user.id)}>Save</button>

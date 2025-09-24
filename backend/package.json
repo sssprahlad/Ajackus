@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "postinstall": "npm rebuild sqlite3",
+    "preinstall": "npm install sqlite3 --build-from-source",
+    "prestart": "npm install sqlite3 --build-from-source",
+    "pretest": "npm install sqlite3 --build-from-source",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
