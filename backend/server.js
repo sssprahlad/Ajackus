@@ -9,15 +9,25 @@ const { authMiddleware } = require('./middleware/auth');
 const app = express();
 const port = process.env.PORT || 8080;
 
+const allowedOrigins = ['http://localhost:3000', 'https://ajackus-abuh.onrender.com'];
+
 app.use(cors({
-    origin: 'http://localhost:3000' || 'https://ajackus-abuh.onrender.com',
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
-
 
 app.get('/', (req, res) => {
     res.json({ 
