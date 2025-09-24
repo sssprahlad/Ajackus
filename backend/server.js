@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000' || 'https://ajackus-abuh.onrender.com',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
