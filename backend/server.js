@@ -36,6 +36,7 @@ const allowedOrigins = [
     optionsSuccessStatus: 204
   };
   app.use(cors(corsOptions));
+  app.options("*", cors(corsOptions));
 
 
 
