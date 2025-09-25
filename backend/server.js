@@ -18,9 +18,10 @@ const port = process.env.PORT || 8080;
 
 
 const allowedOrigins = [
-    'http://localhost:3000',
-    'https://ajackus-one-theta.vercel.app'
-  ];
+  'http://localhost:3000',
+  'https://ajackus-one-theta.vercel.app',
+  'https://ajackus-8imy.vercel.app' 
+];
   
   const corsOptions = {
     origin: function(origin, callback) {
@@ -36,10 +37,13 @@ const allowedOrigins = [
     optionsSuccessStatus: 204
   };
 
-  app.use(cors(corsOptions));
   //app.options("*", cors(corsOptions));
 
   //app.use(express.json());
+
+app.use(cors(corsOptions));
+// app.options('/*', cors(corsOptions));
+app.use(express.json()); 
 
 
 app.get('/', (req, res) => {
