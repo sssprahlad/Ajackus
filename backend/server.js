@@ -16,15 +16,6 @@ const port = process.env.PORT || 8080;
 //     allowedHeaders: ['Content-Type', 'Authorization']
 // }));
 
-// const corsOptions = {
-//     origin: 'http://localhost:3000' || 'https://ajackus-one-theta.vercel.app',
-//     credentials: true,
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     optionsSuccessStatus: 204,
-//  };
- 
-//  app.use(cors(corsOptions));
 
 const allowedOrigins = [
     'http://localhost:3000',
