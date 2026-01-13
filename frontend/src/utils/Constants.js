@@ -1,8 +1,8 @@
 
 import axios from 'axios';
 
-// Use environment variable if available, otherwise use production URL
-export const API_BASE_URL = "https://ajackus-abuh.onrender.com" || "http://localhost:8080";
+export const API_BASE_URL =  "http://localhost:8080";
+ // "https://ajackus-abuh.onrender.com" || "http://localhost:8080";
 
 export const LOGIN_API = `${API_BASE_URL}/login`;
 export const REGISTER_API = `${API_BASE_URL}/register`;
